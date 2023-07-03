@@ -8,6 +8,7 @@ on:
   workflow_dispatch:
   # The quick and simple editor for cron schedule expressions by Cronitor: https://crontab.guru/
   schedule:
+  # Runs at 08:00, only on Monday.
     - cron: '0 8 * * 1'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -42,13 +43,9 @@ jobs:
         name: Commit files
         run:
           git config --local user.name actions-user
-
           git config --local user.email "actions@github.com"
-
           git add *
-
-          git commit -am "GH ACTION Headlines $(date)"
-
+          git commit -am "GH ACTION Event was run successfully $(date)"
           git push origin main
 
         env:
